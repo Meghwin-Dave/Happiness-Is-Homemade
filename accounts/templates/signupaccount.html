@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+    </script>
+    <style>
+        body{
+            background-image: url({% static 'images/sign.jpg' %});
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            overflow-y:hidden;
+            overflow-x:hidden;
+        }
+        .cssbuttons-io-button {
+            background: #0C356A;
+            color: white;
+            font-family: inherit;
+            padding: 0.35em;
+            padding-left: 1.2em;
+            font-size: 17px;
+            font-weight: 500;
+            border-radius: 0.9em;
+            border: none;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            box-shadow: inset 0 0 1.6em -0.6em #714da6;
+            overflow: hidden;
+            position: relative;
+            height: 2.8em;
+            padding-right: 3.3em;
+          }
+          
+          .cssbuttons-io-button .icon {
+            background: white;
+            margin-left: 1em;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 2.2em;
+            width: 2.2em;
+            border-radius: 0.7em;
+            box-shadow: 0.1em 0.1em 0.6em 0.2em #0C356A;
+            right: 0.3em;
+            transition: all 0.3s;
+          }
+          
+          .cssbuttons-io-button:hover .icon {
+            width: calc(100% - 0.6em);
+          }
+          
+          .cssbuttons-io-button .icon svg {
+            width: 1.1em;
+            transition: transform 0.3s;
+            color: #7b52b9;
+          }
+          
+          .cssbuttons-io-button:hover .icon svg {
+            transform: translateX(0.1em);
+          }
+          
+          .cssbuttons-io-button:active .icon {
+            transform: scale(0.95);
+          }
+          
+    </style>
+    </head>
+
+    <body>
+        <div class="container-fluid" style="margin-left:24rem;margin-top:5rem;">
+            <a href="{% url "home" %}"> <img src="{% static 'images/logo.png' %}" width="270px" height="120px" alt=""></a>
+        </div>
+        <div class="container" style="margin-top:5rem; margin-left:10rem">
+        <div class="card-mb-3">
+            <div class="row g-0">
+                <div>
+                    <div class="card-body">
+                        <h5 class="card-title" style="margin-left:17rem; font-family:Pacifico, cursive;; color:#0C356A; font-size:3rem;">Sign up</h5><br><br>
+                        {% if error %}
+                        <div class="alert alert-danger mt-3" role="alert">
+                        {{ error }}
+                        </div>
+                        {% endif %}
+                        <p class="card-text">
+                            <form method="POST">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <h2 class="card-title" style="font-family: Gill Sans, sans-serif; color:#0C356A; font-size:1rem;">
+                                  Already have an account?<a href="{% url "loginaccount" %}" style="text-decoration:none;">  Log in here</a></h2><br>
+                                <button class="cssbuttons-io-button"> Sign Up
+                                    <div class="icon">
+                                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"></path></svg>
+                                    </div>
+                                  </button>
+                            </form>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>

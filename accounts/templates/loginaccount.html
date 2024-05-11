@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+    </script>
+    <style>
+        body {
+            background-image: url({% static 'images/logiin.jpg' %});
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            overflow-x:hidden;
+            overfow-y:hidden;
+        }
+
+        button {
+            font-family: inherit;
+            font-size: 15px;
+            background: #0C356A;
+            color: white;
+            padding: 0.7em 1em;
+            padding-left: 0.9em;
+            display: flex;
+            align-items: center;
+            border: none;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+
+        button span {
+            display: block;
+            margin-left: 0.3em;
+            transition: all 0.3s ease-in-out;
+        }
+
+        button svg {
+            display: block;
+            transform-origin: center center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        button:hover .svg-wrapper {
+            animation: fly-1 0.6s ease-in-out infinite alternate;
+        }
+
+        button:hover svg {
+            transform: translateX(1.2em) rotate(45deg) scale(1.1);
+        }
+
+        button:hover span {
+            transform: translateX(5em);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        @keyframes fly-1 {
+            from {
+                transform: translateY(0.1em);
+            }
+
+            to {
+                transform: translateY(-0.1em);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid" style="margin-left:60rem;margin-top:15rem;">
+        <a href="{% url "home" %}"> <img src="{% static 'images/logo.png' %}" width="270px" height="120px" alt=""></a>
+    </div>
+    <div class="container" style="margin-left:60rem;margin-top:5rem;">
+        <div class="card-mb-3">
+            <div class="row g-0">
+                <div>
+                    <div class="card-body">
+                        <h2 class="card-title" style="font-family:Pacifico, cursive;; color:#0C356A; font-size:3rem;">
+                            Login</h2><br>
+                        {% if error %}
+                        <div class="alert alert-danger mt-3" style="width:40rem" role="alert">
+                            {{ error }}
+                        </div>
+                        {% endif %}
+                        <p class="card-text">
+                            <form method="POST">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <br>
+                                
+                                <h2 class="card-title" style="font-family: Gill Sans, sans-serif; color:#0C356A; font-size:1rem;">
+                                    Don't have an account?<a href="{% url "signupaccount" %}" style="text-decoration:none;">  Sign up here</a></h2><br>
+                                <button>
+                                    <div class="svg-wrapper-1">
+                                        <div class="svg-wrapper">
+                                            <svg height="18" width="18" viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M0 0h24v24H0z" fill="none"></path>
+                                                <path
+                                                    d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+                                                    fill="currentColor"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    
+                                    <span>Login</span>
+                                </button>
+
+                            </form>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+  {% if users %}
+  <div class="container" style="width:60rem; padding-top:2rem; margin-left:30rem; padding-bottom:5rem;">
+    <h1 style="font-family:Dancing Script, cursive; color:#064420; font-size:3rem;">Recipe's by our trusted
+      users.........</h1>
+      <div class="InputContainer" style="margin-left:39rem">
+        <form action="{% url "userchoice" %}">
+        <input placeholder="Search recipe" id="input" class="input" name="searchedrecipe" type="text">  
+        </form>
+      </div>
+    <div class="scroll">
+      <div class="row">
+      {% for user in users  %}
+      <div class="col col-lg-4 mt-1">
+        <div class="card mx-3 my-2" style="width: 15rem;">
+          <img src="{{user.image.url}}" style="width:238px;height:250px;" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{user.recipename}}</h5>
+            <p class="card-text">{{user.dietlabel}}</p>
+            <p class="card-text">BY :- {{user.username}}</p>
+            <form action="{% url 'recipe1' %}">
+            <button class="button" value={{user.recipename}} type="submit" name="button1" data-toggle="modal"
+              data-target="#exampleModal">
+              <svg class="svgIcon" viewBox="0 0 512 512" height="2em" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm50.7-186.9L162.4 380.6c-19.4 7.5-38.5-11.6-31-31l55.5-144.3c3.3-8.5 9.9-15.1 18.4-18.4l144.3-55.5c19.4-7.5 38.5 11.6 31 31L325.1 306.7c-3.2 8.5-9.9 15.1-18.4 18.4zM288 256a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z">
+                </path>
+              </svg>
+              View recipe
+            </button>
+          </form>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    </div>
+  </div>
+  {% endif %}
+  {% if not users %}
+  <div class="container" style="margin-left:42rem; padding-top:11rem; padding-bottom:5.9rem;">
+    <h1 style="font-family:Dancing Script, cursive; color:#064420; font-size:3rem;">No Recipe's added yet....</h1><br>
+    <img src="{% static 'images/page_2.png' %}" width="500px" height="500px" alt="">
+ </div> 
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+api key - dd2324b0740bf83745e673c92c66c8f4
+api id - a259cee5
+
+
+
+66d1002dadb301971777a810a5542f17
+88155ebd
+
+https://api.edamam.com/api/recipes/v2?type=public&q=rice&app_id=88155ebd&app_key=66d1002dadb301971777a810a5542f17&random=true
+
+https://api.edamam.com/api/recipes/v2/by-uri?type=public&app_id=88155ebd&app_key=66d1002dadb301971777a810a5542f17
